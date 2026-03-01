@@ -29,3 +29,15 @@ def delete_item(request, item_id):
         item.delete()
 
     return redirect('grocery:index')
+
+# ....
+
+def add_item(request):
+    """Add a new grocery item"""
+    if request.method == 'POST':
+        name = request.POST.get('name', '').strip()
+
+        if name:
+            GroceryItem.objects.create(name=name)
+
+    return redirect('grocery:index')
